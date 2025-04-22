@@ -81,3 +81,32 @@ way the integrity of the system, since the document name will still appear in th
 documents to which the user has been invited.
 As for document editing, it was preferred to implement it within the system, to
 make up for the problems of mutual exclusion and additional controls resulting from offline editing.
+
+## Auxiliary structures
+Turing execution revolves around two main structures used to keep track of the state
+of users and documents in the system, implemented as two ConcurrentHashMaps,
+users<String, Info> and documents<String, Docs>, respectively.
+
+In users the username is used as the key, as it uniquely identifies a user, and
+within Info we then find various information including the password. To facilitate the management
+of documents a constraint was imposed on the uniqueness of the name, so that documents can be accessed
+using the document name as the key.
+
+The system also provides a serialization mechanism implemented within the class
+Register, which involves the two HashMaps to ensure persistence of information between different
+executions and correspondence with the physical files created.
+
+For crash management and to prevent a user from trying to log in multiple times with the same account,
+another ConcurrentHashMap was defined (in the UserDB class), representing the online set of
+users in which each element is a <User, SocketAddress> pair.
+
+## Thread activation cycle
+The execution cycle of the program involves the activation of a main thread, that of the Server
+which handles the selector, and then a thread for each client. For each user who performs the
+login, the thread for managing notifications is then started and in the editing phase also the one for
+chat management. The latter is interrupted when the client finishes editing through the
+“End Edit” command or when it closes the frame, while the thread for notifications is stopped as soon as the
+as soon as the client logs out.
+Concurrency management was handled through the use of synchronized methods (as opposed to the
+explicit locks that, due to the simplicity of the methods, were unnecessary) as they provide a
+greater robustness and eliminate the possibility of running into deadlock situations.
