@@ -55,3 +55,29 @@ previously by other users;
 
   Maintains an ArrayList of all frames that are opened to manage their closure on
   logout;
+
+- `NotificationHandler`: Runnable class used to implement the reception of
+notifications, sent via UDP;
+- `ChatHandler`: Runnable class used to handle chat related to editing a
+document;
+- `Message`: used to represent chat messages within the system;
+represented as a pair of <Username, Message> strings.
+
+## Implementation specifics
+
+The Server was implemented with Java NIO because, being buffer oriented and having the
+Non-Blocking mode offered by channels, it provides greater flexibility during the process of
+communication with clients. Considering the fact that clients send small data and
+therefore do not involve excessive workloads, an implementation according to the
+single threaded model, as it lends itself well to such situations.
+Methods called by the server in response to requests generally return an integer, which is sent in
+response to the client to handle any anomalous situations.
+The GUI, on the other hand, was implemented with JavaSwing, which, although dated, provides a
+decent range of components and several ways to customize the various frames.
+Another point to dwell on is the sending of invitation-related notifications, for which UDP was
+used UDP, since it lends itself very well to situations in which messages are sent in a small
+size and sporadically. Furthermore, the fact that a notification is lost does not undermine in any
+way the integrity of the system, since the document name will still appear in the list of
+documents to which the user has been invited.
+As for document editing, it was preferred to implement it within the system, to
+make up for the problems of mutual exclusion and additional controls resulting from offline editing.
