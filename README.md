@@ -50,10 +50,8 @@ previously by other users;
 - `UserGUI`: main frame, implements all the mechanisms that allow the user to interact with the system and manages all related frames:
   - `CreateGUI`: frame for creating documents;
   - `InviteGUI`: frame for invitations;
-  - `ShowDocGUI`: frame for choosing documents/sections to display. Once the
-made the choice, a frame (DocVisualizer) is created for on-screen printing.
-  - `EditDocGUI`: frame for choosing the section to be edited. Following confirmation
-    the frame for the actual editing is created (EditingGUI), where the area
-    where the text of the document is displayed and the chat;
-Maintains an ArrayList of all frames that are opened to manage their closure on
-logout;
+  - `ShowDocGUI`: frame for choosing documents/sections to display. Once the made the choice, a frame (DocVisualizer) is created for on-screen printing.
+  - `EditDocGUI`: frame for choosing the section to be edited. Following confirmation the frame for the actual editing is created (EditingGUI), where the area where the text of the document is displayed and the chat;
+
+  Maintains an ArrayList of all frames that are opened to manage their closure on
+  logout;
