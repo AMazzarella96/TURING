@@ -5,7 +5,7 @@
 The project aims to implement a system for collaborative document editing, in which
 which users have the opportunity to contribute to the editing of a document by working on the sections
 into which the latter is divided. The system offers the user the following features:
-- ***Registration for the service**: each user registers for TURING by providing a unique username
+- **Registration for the service**: each user registers for TURING by providing a unique username
 and a password, which he/she will later use to log in;
 - **Document creation**: once the user logs in, he can create documents
 by specifying their name and number of sections.
